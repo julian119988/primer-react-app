@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const colorRojo = { backgroundColor: "red", fontSize: "3rem" };
+const colorAzul = { backgroundColor: "blue", fontSize: "0.5rem" };
+
+class App extends Component {
+  state = {
+    estado: true,
+    estilo: colorRojo,
+  };
+  cambiarEstilo = (e) => {
+    if (this.state.estado) {
+      this.setState({ estado: false });
+      this.setState({ estilo: colorAzul });
+      console.log(this.state.estado, this.state.estilo);
+    } else {
+      this.setState({ estado: true });
+      this.setState({ estilo: colorRojo });
+      console.log(this.state.estado, this.state.estilo);
+    }
+  };
+  render() {
+    return (
+      <div style={this.state.estilo}>
+        <h1>Hola mundo!</h1>
+        <button onClick={this.cambiarEstilo}>Cambiar fondo</button>
+      </div>
+    );
+  }
 }
 
 export default App;
