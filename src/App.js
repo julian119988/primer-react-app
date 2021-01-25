@@ -1,29 +1,42 @@
 import "./App.css";
 import React, { Component } from "react";
 
-const colorRojo = { backgroundColor: "red", fontSize: "3rem" };
-const colorAzul = { backgroundColor: "blue", fontSize: "0.5rem" };
+let divStyle = {
+  flexDirection: "row",
+  textAlign: "center",
+  justifyContent: "space-evenly",
+};
 
 class App extends Component {
   state = {
-    estado: true,
-    estilo: colorRojo,
+    color: { backgroundColor: "red" },
   };
+
   cambiarEstilo = (e) => {
-    if (this.state.estado) {
-      this.setState({ estado: false });
-      this.setState({ estilo: colorAzul });
-      console.log(this.state.estado, this.state.estilo);
+    if (this.state.color.backgroundColor === "red") {
+      this.setState({ color: { backgroundColor: "blue" } });
     } else {
-      this.setState({ estado: true });
-      this.setState({ estilo: colorRojo });
-      console.log(this.state.estado, this.state.estilo);
+      this.setState({ color: { backgroundColor: "red" } });
     }
   };
   render() {
     return (
-      <div style={this.state.estilo}>
-        <h1>Hola mundo!</h1>
+      <div>
+        <div style={(divStyle, this.state.color)}>
+          <div className="divFlex">
+            {" "}
+            <h1>Hola mundo!</h1>
+          </div>
+          <div className="divFlex">
+            {" "}
+            <h1>Hola mundo2</h1>
+          </div>
+          <div className="divFlex">
+            {" "}
+            <h1>Hola mundo3</h1>
+          </div>
+        </div>
+
         <button onClick={this.cambiarEstilo}>Cambiar fondo</button>
       </div>
     );
